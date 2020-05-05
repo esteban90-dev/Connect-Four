@@ -12,4 +12,12 @@ describe Cell do
       expect(cell1.value).to eql("X")
     end
   end
+
+  context "#value" do
+    it "The value attribute can be set" do
+      cell1 = Cell.new
+      cell1.value = "X"
+      expect(cell1.value).to eql("X")
+    end
+  end
 end
