@@ -2,7 +2,7 @@ class Board
   attr_reader :grid
 
   def initialize(input={})
-    @grid = input.fetch(:grid, default_grid)
+    @grid = build_grid(input.fetch(:columns,7), input.fetch(:height,6))
   end
 
   def push(column, value)
@@ -16,10 +16,15 @@ class Board
     end
   end
 
+  def formatted
+    
+    
+  end
+
   private
 
-  def default_grid
-    Array.new(7){ Array.new(6){ Cell.new } }
+  def build_grid(columns, height)
+    Array.new(columns){ Array.new(height){ Cell.new } }
   end
 
 end
