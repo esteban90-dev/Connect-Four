@@ -14,11 +14,32 @@ describe Board do
       end
     end
 
-    it "creates a grid where each grid coordinate is nil by default" do
+    it "creates a grid where each grid element is nil by default" do
       board1 = Board.new
       board1.grid.each do |column|
-        expect(column.all?{ |value| value.nil? }).to eql(true)
+        expect(column.all?{ |element| element.nil? }).to eql(true)
       end
+    end
+  end
+
+  context "#get_element" do
+    it "returns an element that is empty" do
+      board1 = Board.new
+      expect(board1.get_element(0,0)).to eql(nil)
+    end
+
+    it "returns a cell that has been filled with an integer" do
+      board1 = Board.new
+      board1.push(6,55)
+      expect(board1.get_element(6,0)).to eql(55)
+    end
+
+    it "returns a cell that has been filled with an object" do
+      board1 = Board.new
+      TestCell = Struct.new(:name)
+      cell1 = TestCell.new("junk")
+      board1.push(0, cell1)
+      expect(board1.get_element(0,0)).to eql(cell1)
     end
   end
 
