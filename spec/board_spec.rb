@@ -2,23 +2,28 @@ require "./lib/board.rb"
 
 describe Board do
   context "#initialize" do
-    it "creates a grid of 7 columns by default" do
+    it "creates a default grid of 7 columns" do
       board1 = Board.new
       expect(board1.grid.size).to eql(7)
     end
 
-    it "creates a grid where each column has a length of 6 by default" do
+    it "creates a default grid where each column has a height of 6" do
       board1 = Board.new
       board1.grid.each do |column|
         expect(column.size).to eql(6)
       end
     end
 
-    it "creates a grid where each grid element's value is "" by default" do
+    it "creates a default grid where each element responds to the #value message" do
       board1 = Board.new
       board1.grid.each do |column|
-        expect(column.all?{ |element| element.value == "" }).to eql(true)
+        expect(column.all?{ |element| element.respond_to?(:value) }).to eql(true)
       end
+    end
+
+    it "creates a custom grid of 10 columns" do
+      board = Board.new({:columns => 10, :height => 8})
+      expect(board.grid.size).to eql(10)
     end
   end
 
@@ -41,6 +46,13 @@ describe Board do
       board1.push(0, "Z")
       board1.push(0, "X")
       expect(board1.grid[0][1].value).to eql("X")
+    end
+  end
+
+  context "#formatted" do
+    it "Returns the grid as a formatted string" do
+      board1 = Board.new
+      expect(board1.formatted).to be(String)
     end
   end
 end
