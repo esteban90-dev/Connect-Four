@@ -22,25 +22,37 @@ describe Board do
     end
   end
 
-  context "#get_element" do
-    it "returns an element that is empty" do
+  context "#grid" do
+    it "returns the contents of a cell" do
       board1 = Board.new
-      expect(board1.get_element(0,0)).to eql(nil)
-    end
-
-    it "returns a cell that has been filled with an integer" do
-      board1 = Board.new
-      board1.push(6,55)
-      expect(board1.get_element(6,0)).to eql(55)
-    end
-
-    it "returns a cell that has been filled with an object" do
-      board1 = Board.new
-      TestCell = Struct.new(:name)
-      cell1 = TestCell.new("junk")
-      board1.push(0, cell1)
-      expect(board1.get_element(0,0)).to eql(cell1)
+      expect(board1.grid[0][0]).to eql(nil)
     end
   end
 
+  context "#push" do
+
+    TestCell = Struct.new(:name)
+
+    it "Pushes an integer into an empty column" do
+      board1 = Board.new
+      board1.push(6,55)
+      expect(board1.grid[6][0]).to eql(55)
+    end
+
+    it "Pushes an object into an empty column" do
+      board1 = Board.new
+      cell1 = TestCell.new("junk")
+      board1.push(0, cell1)
+      expect(board1.grid[0][0]).to eql(cell1)
+    end
+
+    it "Pushes an object into a partially filled column" do
+      board1 = Board.new
+      cell1 = TestCell.new("junk")
+      cell2 = TestCell.new("junk2")
+      board1.push(0, cell1)
+      board1.push(0, cell2)
+      expect(board1.grid[0][1]).to eql(cell2)
+    end
+  end
 end
