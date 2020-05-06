@@ -2,9 +2,9 @@ require "./lib/cell.rb"
 
 describe Cell do
   context "#initialize" do
-    it "initializes with an empty string by default" do
+    it "initializes with nil by default" do
       cell1 = Cell.new
-      expect(cell1.value).to eql("")
+      expect(cell1.value).to eql(nil)
     end
 
     it "can be initialized with a character like 'X'" do
