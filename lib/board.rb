@@ -8,6 +8,6 @@ class Board
   private
 
   def default_grid
-    Array.new(6){ Array.new(7){ Cell.new } }
+    Array.new(7){ Array.new(6){ Cell.new } }
   end
 end
