@@ -5,6 +5,21 @@ class Board
     @grid = input.fetch(:grid, default_grid)
   end
 
+  def get_element(column, element)
+    grid[column][element]
+  end
+
+  def push(column, value)
+    i = 0
+    while i < grid[column].length
+      if grid[column][i].nil?
+        grid[column][i] = value
+        break
+      end
+      i += 1
+    end
+  end
+
   private
 
   def default_grid
