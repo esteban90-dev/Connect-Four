@@ -8,7 +8,7 @@ class Board
   def push(column, value)
     i = 0
     while i < grid[column].length
-      if grid[column][i].value == ""
+      if grid[column][i].value.nil?
         grid[column][i].value = value
         break
       end
