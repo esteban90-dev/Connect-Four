@@ -8,8 +8,8 @@ class Board
   def push(column, value)
     i = 0
     while i < grid[column].length
-      if grid[column][i].nil?
-        grid[column][i] = value
+      if grid[column][i].value == ""
+        grid[column][i].value = value
         break
       end
       i += 1
@@ -19,7 +19,7 @@ class Board
   private
 
   def default_grid
-    Array.new(7){ Array.new(6) }
+    Array.new(7){ Array.new(6){ Cell.new } }
   end
 
 end
