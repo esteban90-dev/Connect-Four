@@ -55,4 +55,56 @@ describe Board do
       expect{ board1.formatted }.to output(String).to_stdout
     end
   end
+
+  context "#winner?" do 
+    it "Returns true when a column has four in a row" do
+      board1 = Board.new
+      board1.push(3,"X")
+      board1.push(3,"X")
+      board1.push(3,"X")
+      board1.push(3,"X")
+      expect(board1.winner?).to eql(true)
+    end
+
+    it "Returns true when a row has has four in a row" do
+      board1 = Board.new
+      board1.push(0,"X")
+      board1.push(1,"X")
+      board1.push(2,"X")
+      board1.push(3,"X")
+      expect(board1.winner?).to eql(true)
+    end
+
+    it "Returns true when a diagonal in one dimension has four in a row" do
+      board1 = Board.new
+      board1.push(0,"X")
+      board1.push(1,"O")
+      board1.push(1,"X")
+      board1.push(2,"O")
+      board1.push(2,"O")
+      board1.push(2,"X")
+      board1.push(3,"O")
+      board1.push(3,"O")
+      board1.push(3,"O")
+      board1.push(3,"X")
+      expect(board1.winner?).to eql(true)
+    end
+
+    it "Returns true when a diagonal in the other dimension has four in a row" do
+      board1 = Board.new
+      board1.push(0,"X")
+      board1.push(0,"X")
+      board1.push(0,"X")
+      board1.push(0,"O")
+      board1.push(1,"X")
+      board1.push(1,"X")
+      board1.push(1,"O")
+      board1.push(2,"X")
+      board1.push(2,"O")
+      board1.push(3,"O")
+      expect(board1.winner?).to eql(true)
+    end
+
+
+  end
 end
