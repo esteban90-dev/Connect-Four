@@ -24,7 +24,79 @@ class Board
     puts footer_line_2.join("  |  ")
   end
 
+  def winner?
+    return true if winner_column?
+    return true if winner_row?
+    return true if winner_diagonal?
+    false
+  end
+
   private
+
+  def winner_column?
+    grid.any?{ |column| four_in_a_row?(column) }
+  end
+
+  def winner_row?
+    grid.transpose.any?{ |row| four_in_a_row?(row) }
+  end
+
+  def winner_diagonal?
+    diagonals.any?{ |diagonal| four_in_a_row?(diagonal) }
+  end
+
+  def diagonals
+    #returns diagonals of a grid that have lenth of 4:
+    # grid = [[1, 1, 2, 9],
+    #         [7, 2, 4, 9],
+    #         [3, 8, 5, 3],
+    #         [4, 9, 1, 5]]
+    # diagonals returns [[1,2,5,5],[4,8,4,9]]
+  
+    i = 0
+    j = 0
+    z = 0
+    grid_temp = grid
+    temp = []
+    result = []
+    loop do
+      while i < grid_temp.length
+        while j < grid_temp[i].length
+          begin
+            temp.push( grid_temp[i][j], grid_temp[i + 1][j + 1], grid_temp[i + 2][j + 2], grid_temp[i + 3][j + 3] )
+          rescue
+            temp << nil
+          end
+          result << temp
+          temp = []
+          j += 1
+        end
+        j = 0
+        i += 1
+      end
+      i = 0
+      z += 1
+      break if z > 1
+      grid_temp.reverse!
+    end
+    result.map{ |array| array.compact }.select{ |array| array.length > 3 }
+  end
+
+  def four_in_a_row?(array)
+    i = 0
+    sum = 1
+    while i < array.length - 1
+      if array[i].value == array[i + 1].value
+        sum += 1
+      else
+        sum = 1
+      end
+      break if sum == 4
+      i += 1
+    end
+    return true if sum >= 4
+    false
+  end
 
   def footer_line_1
     footer = []
