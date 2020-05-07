@@ -57,6 +57,26 @@ describe Board do
   end
 
   context "#winner?" do 
+    it "Returns false when the board is empty" do
+      board1 = Board.new
+      expect(board1.winner?).to eql(false)
+    end
+
+    it "Returns false when the board is filled with random values" do
+      board1 = Board.new
+      board1.push(0,"1")
+      board1.push(1,"2")
+      board1.push(1,"3")
+      board1.push(2,"4")
+      board1.push(2,"5")
+      board1.push(2,"6")
+      board1.push(3,"7")
+      board1.push(3,"8")
+      board1.push(3,"9")
+      board1.push(3,"1")
+      expect(board1.winner?).to eql(false)
+    end
+
     it "Returns true when a column has four in a row" do
       board1 = Board.new
       board1.push(3,"X")
