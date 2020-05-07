@@ -88,7 +88,7 @@ class Board
     i = 0
     sum = 1
     while i < array.length - 1
-      if array[i].value == array[i + 1].value
+      if array[i].value && array[i].value == array[i + 1].value
         sum += 1
       else
         sum = 1
@@ -124,5 +124,4 @@ class Board
 
 end
 
-board1 = Board.new
-board1.formatted
+
