@@ -1,3 +1,5 @@
+require "./lib/cell.rb"
+
 class Board
   attr_reader :grid
 
@@ -18,7 +20,7 @@ class Board
 
   def formatted
     grid.transpose.reverse.each do |row|
-      puts row.map{ |element| element.nil? ? " " : element }.join("  |  ")
+      puts row.map{ |element| element.value.nil? ? " " : element.value }.join("  |  ")
     end
     puts footer_line_1.join("  |  ")
     puts footer_line_2.join("  |  ")
@@ -121,3 +123,6 @@ class Board
   end
 
 end
+
+board1 = Board.new
+board1.formatted
