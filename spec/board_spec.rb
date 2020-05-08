@@ -124,7 +124,37 @@ describe Board do
       board1.push(3,"O")
       expect(board1.winner?).to eql(true)
     end
+  end
 
+  context "#tie?" do
+    it "Returns true when the grid is full and winner? returns false" do
+      board1 = Board.new({:columns=>4, :height=>4})
+      board1.push(0,"a")
+      board1.push(0,"b")
+      board1.push(0,"c")
+      board1.push(0,"d")
+      board1.push(1,"e")
+      board1.push(1,"f")
+      board1.push(1,"g")
+      board1.push(1,"h")
+      board1.push(2,"i")
+      board1.push(2,"j")
+      board1.push(2,"k")
+      board1.push(2,"l")
+      board1.push(3,"m")
+      board1.push(3,"n")
+      board1.push(3,"o")
+      board1.push(3,"p")
+      expect(board1.tie?).to eql(true)
+    end
 
+    it "Returns false when the grid is full and winner? returns true" do
+      board1 = Board.new({:columns=>4, :height=>4})
+      4.times{ board1.push(0, "a") }
+      4.times{ board1.push(1, "a") }
+      4.times{ board1.push(2, "a") }
+      4.times{ board1.push(3, "a") }
+      expect(board1.tie?).to eql(false)
+    end
   end
 end
