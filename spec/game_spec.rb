@@ -48,4 +48,14 @@ describe Game do
     end
   end
 
+  context "#switch_players" do
+    it "Switches the current_player and the other_player" do
+      players = [sean, alex]
+      allow(players).to receive(:shuffle).and_return([sean,alex])
+      game1 = Game.new({ :players => players, :board =>  board1 })
+      game1.switch_players
+      expect(game1.current_player).to eql(alex)
+    end
+  end
+
 end
