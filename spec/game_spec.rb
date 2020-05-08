@@ -14,7 +14,7 @@ describe Game do
     
     it "Does not raise an exception when initialized with a valid input {}" do
       players = [sean, alex]
-      expect{ Game.new({ :players => :players, :board =>  board1 }) }.not_to raise_error(KeyError)
+      expect{ Game.new({ :players => players, :board =>  board1 }) }.not_to raise_error(KeyError)
     end
 
     it "Randomly assigns the current player" do
@@ -30,8 +30,22 @@ describe Game do
       game1 = Game.new({ :players => players, :board =>  board1 })
       expect(game1.other_player).to eql(alex)
     end
+  end
 
+  context "#players" do
+    it "Returns the array of players" do
+      players = [sean, alex]
+      game1 = Game.new({ :players => players, :board =>  board1 })
+      expect(game1.players).to eql(players)
+    end
+  end
 
+  context "#board" do
+    it "Returns the board" do 
+      players = [sean, alex]
+      game1 = Game.new({ :players => players, :board =>  board1 })
+      expect(game1.board).to eql(board1)
+    end
   end
 
 end
