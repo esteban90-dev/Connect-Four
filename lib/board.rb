@@ -1,5 +1,3 @@
-require "./lib/cell.rb"
-
 class Board
   attr_reader :grid
 
@@ -33,7 +31,16 @@ class Board
     false
   end
 
+  def tie?
+    return true if !winner? && full?
+    false
+  end
+
   private
+
+  def full?
+    grid.all?{ |column| column.all?{ |element| !element.value.nil? } }
+  end
 
   def winner_column?
     grid.any?{ |column| four_in_a_row?(column) }
@@ -121,7 +128,6 @@ class Board
   def build_grid(columns, height)
     Array.new(columns){ Array.new(height){ Cell.new } }
   end
-
 end
 
 
