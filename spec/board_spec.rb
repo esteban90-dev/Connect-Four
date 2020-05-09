@@ -50,9 +50,9 @@ describe Board do
   end
 
   context "#formatted" do
-    it "Prints the formatted grid to the console as a string" do
+    it "Returns the formatted grid as a string" do
       board1 = Board.new
-      expect{ board1.formatted }.to output(String).to_stdout
+      expect(board1.formatted).to be_a(String)
     end
   end
 
