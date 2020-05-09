@@ -25,7 +25,15 @@ describe Console do
       console = Console.new( {:output => StringIO.new } )
       expect(console.output).to be_a(StringIO)
     end
+  end
 
+  context "#write" do
+    it "Writes a string to output" do
+      console = Console.new( {:output => StringIO.new} )
+      message = "Hello\n"
+      console.write(message)
+      expect(console.output.string).to eql(message)
+    end
   end
 
 
