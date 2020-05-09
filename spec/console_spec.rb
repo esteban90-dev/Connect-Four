@@ -36,5 +36,22 @@ describe Console do
     end
   end
 
+  context "#prompt" do
+    it "Writes a prompt message to output" do
+      console = Console.new( {:input => StringIO.new("29\n"), :output => StringIO.new} )
+      message = "Enter your age.\n"
+      console.prompt(message)
+      expect(console.output.string).to eql(message)
+    end
+
+    it "Returns the input" do
+      console = Console.new( {:input => StringIO.new("29\n"), :output => StringIO.new} )
+      message = "Enter your age.\n"
+      expect(console.prompt(message)).to eql("29")
+    end
+
+  end
+
+
 
 end
