@@ -5,4 +5,10 @@ class Console
     @input = input.fetch(:input, $stdin)
     @output = input.fetch(:output, $stdout)
   end
+
+  public
+
+  def write(string)
+    output.puts(string)
+  end
 end
