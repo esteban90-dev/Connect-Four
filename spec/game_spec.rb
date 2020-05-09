@@ -72,6 +72,28 @@ describe Game do
     end
   end
 
+  context "#game_over?" do
+    it "Returns true if board.winner? returns true" do
+      game1 = Game.new({ :players => players, :board =>  board1, :console => console1 })
+      allow(game1.board).to receive(:winner?).and_return(true)
+      expect(game1.game_over?).to eql(true)
+    end
+
+    it "Returns true if board.tie? returns true" do
+      game1 = Game.new({ :players => players, :board =>  board1, :console => console1 })
+      allow(game1.board).to receive(:winner?).and_return(false)
+      allow(game1.board).to receive(:tie?).and_return(true)
+      expect(game1.game_over?).to eql(true)
+    end
+
+    it "returns false if board.tie? and board.winner? both return true" do
+      game1 = Game.new({ :players => players, :board =>  board1, :console => console1 })
+      allow(game1.board).to receive(:winner?).and_return(false)
+      allow(game1.board).to receive(:tie?).and_return(false)
+      expect(game1.game_over?).to eql(false)
+    end
+  end
+
   context "#result" do
     it "returns a message with the current player's name if a winner was detected" do
       game1 = Game.new({ :players => players, :board =>  board1, :console => console1 })
