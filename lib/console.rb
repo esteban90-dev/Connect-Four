@@ -11,4 +11,9 @@ class Console
   def write(string)
     output.puts(string)
   end
+
+  def prompt(string)
+    output.puts(string)
+    input.gets.chomp
+  end
 end
