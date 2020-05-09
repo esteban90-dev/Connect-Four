@@ -23,4 +23,10 @@ class Game
     return "#{current_player} is the winner!" if board.winner?
     return "Game was a tie!" if board.tie?
   end
+
+  def game_over?
+    return true if board.winner?
+    return true if board.tie?
+    false
+  end
 end
