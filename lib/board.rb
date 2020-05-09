@@ -17,11 +17,16 @@ class Board
   end
 
   def formatted
+    result = ""
     grid.transpose.reverse.each do |row|
-      puts row.map{ |element| element.value.nil? ? " " : element.value }.join("  |  ")
+      result << row.map{ |element| element.value.nil? ? " " : element.value }.join("  |  ")
+      result << "\n"
     end
-    puts footer_line_1.join("  |  ")
-    puts footer_line_2.join("  |  ")
+    result << footer_line_1.join("  |  ")
+    result << "\n"
+    result << footer_line_2.join("  |  ")
+    result << "\n"
+    result
   end
 
   def winner?
