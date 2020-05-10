@@ -66,7 +66,7 @@ describe Game do
   context "#prompt_player" do
     it "Sends an output message to the console" do 
       game1 = Game.new({ :players => players, :board =>  board1, :console => console1 })
-      message = "Select a column to fill."
+      message = "#{game1.current_player.name}, Select a column to fill."
       allow(game1).to receive(:invalid?).and_return(false)
       expect(game1.console).to receive(:prompt).with(message)
       game1.prompt_player
@@ -74,7 +74,7 @@ describe Game do
 
     it "Returns a valid input" do
       game1 = Game.new({ :players => players, :board =>  board1, :console => console1 })
-      message = "Select a column to fill."
+      message = "#{game1.current_player.name}, Select a column to fill."
       allow(game1).to receive(:invalid?).and_return(false)
       allow(game1.console).to receive(:prompt).with(message).and_return("5")
       expect(game1.prompt_player).to eql(5)
@@ -82,7 +82,7 @@ describe Game do
 
     it "Displays 'Invalid input.' when the input is not valid" do
       game1 = Game.new({ :players => players, :board =>  board1, :console => console1 })
-      message1 = "Select a column to fill."
+      message1 = "#{game1.current_player.name}, Select a column to fill."
       message2 = "Invalid input."
       allow(game1.console).to receive(:prompt).with(message1).and_return("10","12","5")
       allow(game1).to receive(:invalid?).and_return(true, true, false)
@@ -156,7 +156,7 @@ describe Game do
   context "#result" do
     it "returns a message with the current player's name if a winner was detected" do
       game1 = Game.new({ :players => players, :board =>  board1, :console => console1 })
-      message = "#{game1.current_player} is the winner!"
+      message = "#{game1.current_player.name} is the winner!"
       allow(game1.board).to receive(:winner?).and_return(true)
       expect(game1.result).to eql(message)
     end
