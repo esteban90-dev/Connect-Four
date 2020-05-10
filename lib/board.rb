@@ -29,6 +29,10 @@ class Board
     result
   end
 
+  def columns
+    grid.length
+  end
+
   def winner?
     return true if winner_column?
     return true if winner_row?
