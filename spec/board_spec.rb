@@ -69,6 +69,13 @@ describe Board do
     end
   end
 
+  context "#columns" do 
+    it "Returns the number of columns" do
+      board1 = Board.new
+      expect(board1.columns).to eql(7)
+    end
+  end
+
   context "#winner?" do 
     it "Returns false when the board is empty" do
       board1 = Board.new
