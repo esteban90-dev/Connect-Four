@@ -98,34 +98,34 @@ describe Game do
       expect(game1.invalid?(input)).to eql(true)
     end
 
-    it "Returns false when input is less than board.length, and the column isn't full" do
+    it "Returns false when input is less than # of columns, and the column isn't full" do
       game1 = Game.new({ :players => players, :board =>  board1, :console => console1 })
       input = "3"
-      allow(game1.board).to receive(:length).and_return(7)
+      allow(game1.board).to receive(:columns).and_return(7)
       allow(game1.board).to receive(:column_full?).with(input.to_i).and_return(false)
       expect(game1.invalid?(input)).to eql(false)
     end
 
-    it "Returns true when input is greater than board.length" do
+    it "Returns true when input is greater than column #" do
       game1 = Game.new({ :players => players, :board =>  board1, :console => console1 })
       input = "10"
-      allow(game1.board).to receive(:length).and_return(7)
+      allow(game1.board).to receive(:columns).and_return(7)
       allow(game1.board).to receive(:column_full?).with(input.to_i).and_return(false)
       expect(game1.invalid?(input)).to eql(true)
     end
 
-    it "Returns false when input is less than board.length, and column isn't already full" do
+    it "Returns false when input is less than # of columns, and column isn't already full" do
       game1 = Game.new({ :players => players, :board =>  board1, :console => console1 })
       input = "3"
-      allow(game1.board).to receive(:length).and_return(7)
+      allow(game1.board).to receive(:columns).and_return(7)
       allow(game1.board).to receive(:column_full?).with(input.to_i).and_return(false)
       expect(game1.invalid?(input)).to eql(false)
     end
 
-    it "Returns true when input is less than board.length, and column is already full" do
+    it "Returns true when input is less than # of columns, and column is already full" do
       game1 = Game.new({ :players => players, :board =>  board1, :console => console1 })
       input = "3"
-      allow(game1.board).to receive(:length).and_return(7)
+      allow(game1.board).to receive(:columns).and_return(7)
       allow(game1.board).to receive(:column_full?).with(input.to_i).and_return(true)
       expect(game1.invalid?(input)).to eql(true)
     end
