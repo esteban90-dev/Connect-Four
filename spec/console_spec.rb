@@ -36,6 +36,13 @@ describe Console do
     end
   end
 
+  context "#read" do
+    it "Reads the input and removes the new line character" do
+      console = Console.new( {:input => StringIO.new("29\n")} )
+      expect(console.read).to eql("29")
+    end
+  end
+
   context "#prompt" do
     it "Writes a prompt message to output" do
       console = Console.new( {:input => StringIO.new("29\n"), :output => StringIO.new} )
@@ -49,9 +56,5 @@ describe Console do
       message = "Enter your age.\n"
       expect(console.prompt(message)).to eql("29")
     end
-
   end
-
-
-
 end
