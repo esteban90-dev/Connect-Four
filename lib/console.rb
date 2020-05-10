@@ -8,12 +8,16 @@ class Console
 
   public
 
+  def read
+    input.gets.chomp
+  end
+
   def write(string)
     output.puts(string)
   end
 
   def prompt(string)
-    output.puts(string)
-    input.gets.chomp
+    write(string)
+    read
   end
 end
