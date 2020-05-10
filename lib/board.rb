@@ -41,6 +41,10 @@ class Board
     false
   end
 
+  def column_full?(column)
+    grid[column].all?{ |element| !element.value.nil? }
+  end
+
   private
 
   def full?
