@@ -56,6 +56,19 @@ describe Board do
     end
   end
 
+  context "#column_full?" do
+    it "Returns false when column is not full" do
+      board1 = Board.new
+      expect(board1.column_full?(3)).to eql(false)
+    end
+
+    it "Returns true when column is full" do
+      board1 = Board.new
+      6.times{ board1.push(3,"X") }
+      expect(board1.column_full?(3)).to eql(true)
+    end
+  end
+
   context "#winner?" do 
     it "Returns false when the board is empty" do
       board1 = Board.new
