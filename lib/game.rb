@@ -48,7 +48,7 @@ class Game
 
   def invalid?(input)
     return true unless input.match?(/^[0-9]$/)
-    return true if input.to_i >= board.length
+    return true if input.to_i >= board.columns
     return true if board.column_full?(input.to_i)
     false
   end
