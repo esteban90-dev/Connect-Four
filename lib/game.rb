@@ -11,6 +11,16 @@ class Game
 
   public
 
+  def play
+    console.write(board.formatted)
+    loop do
+      input = prompt_player
+      console.write(board.formatted)
+      break if game_over?
+    end
+    console.write(result)
+  end
+
   def switch_players
     self.current_player, self.other_player = other_player, current_player
   end
