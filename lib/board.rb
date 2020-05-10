@@ -25,7 +25,7 @@ class Board
     result << footer_line_1.join("  |  ")
     result << "\n"
     result << footer_line_2.join("  |  ")
-    result << "\n"
+    result << "\n\n"
     result
   end
 
