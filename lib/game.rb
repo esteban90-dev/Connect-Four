@@ -48,6 +48,8 @@ class Game
     false
   end
 
+  private
+
   def invalid?(input)
     return true unless input.match?(/^[0-9]$/)
     return true if input.to_i >= board.columns
