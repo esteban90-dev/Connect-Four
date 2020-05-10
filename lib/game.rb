@@ -16,7 +16,13 @@ class Game
   end
 
   def prompt_player
-    console.prompt("Select a column to fill.")
+    input = ""
+    loop do
+      input = console.prompt("Select a column to fill.")
+      break unless invalid?(input)
+      console.write("Invalid input.")
+    end
+    input.to_i
   end
 
   def result
@@ -27,6 +33,13 @@ class Game
   def game_over?
     return true if board.winner?
     return true if board.tie?
+    false
+  end
+
+  def invalid?(input)
+    return true unless input.match?(/^[0-9]$/)
+    return true if input.to_i >= board.length
+    return true if board.column_full?(input.to_i)
     false
   end
 end
