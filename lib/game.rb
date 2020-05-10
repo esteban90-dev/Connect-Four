@@ -15,8 +15,10 @@ class Game
     console.write(board.formatted)
     loop do
       input = prompt_player
+      board.push(input, current_player.color)
       console.write(board.formatted)
       break if game_over?
+      switch_players
     end
     console.write(result)
   end
@@ -28,7 +30,7 @@ class Game
   def prompt_player
     input = ""
     loop do
-      input = console.prompt("Select a column to fill.")
+      input = console.prompt("#{current_player.name}, Select a column to fill.")
       break unless invalid?(input)
       console.write("Invalid input.")
     end
@@ -36,7 +38,7 @@ class Game
   end
 
   def result
-    return "#{current_player} is the winner!" if board.winner?
+    return "#{current_player.name} is the winner!" if board.winner?
     return "Game was a tie!" if board.tie?
   end
 
